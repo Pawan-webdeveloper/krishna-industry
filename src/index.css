@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora", sans-serif;
+
+  --color-brand-navy: #0f172a;
+  --color-brand-blue: #0051d5;
+  --color-brand-cyan: #06b6d4;
+  --color-background-cool: #f7f9fb;
+  --color-border-subtle: #e2e8f0;
+  --color-text-muted: #64748b;
+
+  --radius-xl: 1.5rem;
+  --radius-lg: 1rem;
+  --radius-md: 0.75rem;
+
+  --shadow-ambient: 0 10px 30px -10px rgba(15, 23, 42, 0.04);
+}
+
+@layer base {
+  body {
+    @apply bg-background-cool text-brand-navy font-sans antialiased selection:bg-brand-blue/10;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-xl border border-border-subtle shadow-ambient;
+  }
+}
