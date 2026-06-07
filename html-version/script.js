@@ -8,6 +8,7 @@ const menuIconClose = document.getElementById('menuIconClose');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 20);
 });
+navbar.classList.toggle('scrolled', window.scrollY > 20);
 
 menuToggle.addEventListener('click', () => {
   const isOpen = mobileMenu.classList.toggle('open');

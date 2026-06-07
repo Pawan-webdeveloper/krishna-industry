@@ -5,16 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Krishna Industries - Engineered for Technical Excellence</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@500;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
 
   <!-- Navbar -->
   <header class="navbar" id="navbar">
     <div class="container navbar-inner">
-      <div class="logo">
-        <i data-lucide="factory"></i>
-        KRISHNA INDUSTRIES
-      </div>
+      <a href="#" class="logo">
+        <img src="images/logo.jpg" alt="Krishna Logo" />
+      </a>
 
       <nav class="nav-links">
         <a href="#submersible">Submersible</a>
@@ -45,31 +47,36 @@
 
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-bg">
-      <img src="images/hero-bg.jpg" alt="Hero Background" />
-      <div class="hero-overlay"></div>
-    </div>
+    <div class="hero-bg" aria-hidden="true"></div>
 
-    <div class="container hero-content">
-      <span class="badge">ESTABLISHED 1988</span>
-      <h1>
-        Engineered for <br />
-        <span class="highlight">Technical Excellence</span>
-      </h1>
-      <p>
-        Setting the global benchmark in high-performance pump manufacturing through relentless innovation and precision fluid dynamic engineering.
-      </p>
-      <div class="hero-buttons">
-        <button class="btn-hero-primary">
-          Explore Products
-          <i data-lucide="arrow-right"></i>
-        </button>
-        <button class="btn-hero-secondary">Our Story</button>
+    <div class="container hero-inner">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <img class="hero-brand-logo" src="images/vector.png" alt="Krishna Industries" />
+          <p class="hero-tagline">Submersible Pump Set</p>
+          <p class="hero-tagline">SELF PRIMING MONOBLOCK & SHALLOW WELL PUMP</p>
+          <p class="hero-hindi">हर किसान की पसंद</p>
+         
+
+
+          <div class="hero-cta-row">
+            <a href="#submersible" class="btn-shop-now">Shop Now</a>
+           
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <img
+            class="hero-pumps"
+            src="images/hero-image.png"
+            alt="Self priming monoblock and shallow well pumps with ISO 9001, Make in India, and SKF certifications"
+          />
+        </div>
       </div>
     </div>
 
-    <div class="scroll-indicator">
-      <div class="scroll-line"></div>
+    <div class="hero-bottom-bar">
+      <p>4" (100 mm) Submersible Pump Set</p>
     </div>
   </section>
 
@@ -424,7 +431,9 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <div class="logo-text">KRISHNA INDUSTRIES</div>
+          <div class="footer-logo">
+            <img src="images/logo.jpg" alt="Krishna Logo" />
+          </div>
           <p>Engineering superior fluid management solutions since 1988. Precision-driven, quality-focused.</p>
           <div class="footer-social">
             <button aria-label="Factory"><i data-lucide="factory"></i></button>
