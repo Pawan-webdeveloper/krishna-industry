@@ -32,3 +32,4 @@ Or open `index.html` directly in your browser (images and icons load from local/
 - Certification card hover scale
 - Contact form slide-in
 - Lucide icons (loaded via CDN)
+# krishna

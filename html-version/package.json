@@ -1,0 +1,8 @@
+{
+  "name": "krishna-industries-html",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "resend": "^4.8.0"
+  }
+}

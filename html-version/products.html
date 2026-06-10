@@ -28,7 +28,7 @@
       </nav>
 
       <div class="nav-actions">
-        <a href="#inquiry" class="btn-primary" style="display:block;text-decoration:none;">Request Quote</a>
+        <a href="#inquiry" class="btn-primary open-inquiry-form" style="display:block;text-decoration:none;">Request Quote</a>
         <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
           <span id="menuIconOpen"><i data-lucide="menu"></i></span>
           <span id="menuIconClose" style="display:none"><i data-lucide="x"></i></span>
@@ -43,7 +43,7 @@
       <a href="#control-panels">Control Panels</a>
       <a href="#pump-sets">Pump Sets</a>
       <a href="#inquiry">Inquire</a>
-      <a href="#inquiry" class="btn-primary" style="display:block;text-decoration:none;text-align:center;">Request Quote</a>
+      <a href="#inquiry" class="btn-primary open-inquiry-form" style="display:block;text-decoration:none;text-align:center;">Request Quote</a>
     </div>
   </header>
 
@@ -271,9 +271,9 @@
           <p class="page-hero-hindi" style="margin-bottom:0.5rem;">हर किसान की पसंद</p>
           <p>Reliable control panels for submersible pump operations.</p>
         </div>
-        <div class="control-panel-hero-img">
+        <!-- <div class="control-panel-hero-img">
           <img src="images/control-panel.png" alt="VACTOS Submersible Control Panels" />
-        </div>
+        </div> -->
       </div>
 
       <div class="control-panel-grid">
@@ -469,30 +469,27 @@
       </div>
 
       <div class="contact-form-wrap">
-        <form class="contact-form" id="inquiryForm" onsubmit="return false;">
-          <div class="form-grid two-col">
-            <div class="form-group">
-              <label>Full Name</label>
-              <input type="text" placeholder="John Doe" required />
-            </div>
-            <div class="form-group">
-              <label>Phone</label>
-              <input type="tel" placeholder="+91 98765 43210" />
-            </div>
+        <form class="contact-form" id="inquiryForm">
+          <div class="form-group">
+            <label for="inquiryFormName">Name</label>
+            <input type="text" id="inquiryFormName" name="name" placeholder="Your full name" required />
           </div>
           <div class="form-group">
-            <label>Email</label>
-            <input type="email" placeholder="john@company.com" required />
+            <label for="inquiryFormContact">Phone or Email</label>
+            <input type="text" id="inquiryFormContact" name="contact" placeholder="+91 98765 43210 or you@email.com" required />
           </div>
           <div class="form-group">
-            <label>Product of Interest</label>
-            <input type="text" id="productField" placeholder="e.g. Star 0.5HP Monoblock" />
+            <label for="inquiryFormProduct">Product</label>
+            <select id="inquiryFormProduct" name="product" required>
+              <option value="">Select a product</option>
+            </select>
           </div>
           <div class="form-group">
-            <label>Message</label>
-            <textarea id="messageField" rows="4" placeholder="Quantity, delivery location, or technical questions..."></textarea>
+            <label for="inquiryFormEnquiry">Enquiry</label>
+            <textarea id="inquiryFormEnquiry" name="enquiry" rows="4" placeholder="Quantity, delivery location, or technical questions..." required></textarea>
           </div>
-          <button type="submit" class="btn-submit">
+          <p class="inquiry-form-status" id="inquiryFormStatus" hidden></p>
+          <button type="submit" class="btn-submit" id="inquiryFormSubmit">
             Submit Inquiry
             <i data-lucide="arrow-right"></i>
           </button>
@@ -558,20 +555,8 @@
 
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script src="script.js"></script>
+  <script src="inquiry-form.js"></script>
   <script>
-    document.querySelectorAll('.btn-inquire[data-product]').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const product = btn.dataset.product;
-        const field = document.getElementById('productField');
-        const message = document.getElementById('messageField');
-        if (field) field.value = product;
-        if (message && !message.value.trim()) {
-          message.value = 'I would like to inquire about: ' + product;
-        }
-        document.getElementById('inquiry')?.scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-
     const sections = document.querySelectorAll('.catalog-section');
     const pills = document.querySelectorAll('.category-pill');
     const observer = new IntersectionObserver(
