@@ -116,30 +116,60 @@
     el.hidden = false;
   }
 
+  const WEB3FORMS_KEY = window.WEB3FORMS_ACCESS_KEY || 'd3e15d6a-99b4-4a47-bd2a-b41e47659c3c';
+
   async function submitInquiry(form, statusEl, submitBtn) {
     const formData = new FormData(form);
-    const payload = {
-      name: formData.get('name'),
-      contact: formData.get('contact'),
-      product: formData.get('product'),
-      enquiry: formData.get('enquiry'),
-    };
 
     submitBtn.disabled = true;
     const originalHtml = submitBtn.innerHTML;
     submitBtn.innerHTML = 'Sending...';
 
     try {
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
+      let response;
+      let data;
 
-      const data = await response.json().catch(() => ({}));
+      if (WEB3FORMS_KEY) {
+        // Submit directly via Web3Forms (Client-Side, zero backend required)
+        const web3FormData = new FormData();
+        web3FormData.append('access_key', WEB3FORMS_KEY);
+        web3FormData.append('name', formData.get('name'));
+        web3FormData.append('contact', formData.get('contact'));
+        web3FormData.append('product', formData.get('product'));
+        web3FormData.append('message', formData.get('enquiry'));
+        web3FormData.append('subject', `New Product Inquiry: ${formData.get('product')}`);
+        web3FormData.append('from_name', 'Krishna Industries Website');
 
-      if (!response.ok) {
-        throw new Error(data.error || 'Something went wrong. Please try again.');
+        response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: web3FormData,
+        });
+
+        data = await response.json();
+
+        if (!response.ok || !data.success) {
+          throw new Error(data.message || 'Something went wrong with Web3Forms. Please try again.');
+        }
+      } else {
+        // Fall back to original Vercel serverless function /api/inquiry
+        const payload = {
+          name: formData.get('name'),
+          contact: formData.get('contact'),
+          product: formData.get('product'),
+          enquiry: formData.get('enquiry'),
+        };
+
+        response = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        data = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Something went wrong. Please try again.');
+        }
       }
 
       showStatus(statusEl, 'Thank you! Your inquiry has been sent. We will contact you soon.', 'success');

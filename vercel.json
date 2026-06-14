@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "html-version/api/inquiry.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "html-version/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/inquiry",
+      "dest": "/html-version/api/inquiry.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/html-version/$1"
+    }
+  ]
+}
